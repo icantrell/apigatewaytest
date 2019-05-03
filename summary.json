@@ -1,0 +1,53 @@
+{
+    "definitions": {
+        "summary": {
+            "options": {
+                "$ref": "../components/option.json#/definitions/basicOptions"
+            },
+            "get": {
+                "operationId": "getMapNoteTally",
+                "x-amazon-apigateway-request-validator": "params-only",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "venueId",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "$ref": "../components/responses.json#/definitions/basicResponses"
+                },
+                "security": [
+                    {
+                        "MapNoteAuthorizer": []
+                    }
+                ],
+                "x-amazon-apigateway-integration": {
+                    "credentials": "arn:aws:iam::103296743396:role/MapNotes",
+                    "responses": {
+                        "$ref": "../components/intResponses.json#/definitions/basicIntegrationResponses"
+                    },
+                    "requestTemplates": {
+                        "application/json": "{ \"accountId\": \"$input.params('accountId')\", \"venueId\": \"$input.params('venueId')\", \"stage\" : \"$context.stage\" }"
+                    },
+                    "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:103296743396:function:mnGetMapNoteTally:LAMBDA_VERSION/invocations",
+                    "httpMethod": "POST",
+                    "type": "aws"
+                }
+            }
+        }
+    }
+}

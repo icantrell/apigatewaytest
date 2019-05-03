@@ -1,0 +1,118 @@
+{
+    "definitions": {
+        "fullMapNote": {
+            "options": {
+                "$ref": "../components/option.json#/definitions/basicOptions"
+            },
+            "get": {
+                "operationId": "getFullMapNote",
+                "x-amazon-apigateway-request-validator": "params-only",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "venueId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "mapnoteId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "$ref": "../components/responses.json#/definitions/basicResponses"
+                },
+                "security": [
+                    {
+                        "MapNoteAuthorizer": []
+                    }
+                ],
+                "x-amazon-apigateway-integration": {
+                    "credentials": "arn:aws:iam::103296743396:role/MapNotes",
+                    "responses": {
+                        ".*\"status\":403.*": {"$ref": "../components/intResponses.json#/definitions/basicIntegrationResponses/.*\"status\":403.*"},
+                        ".*\"status\":200.*": {"$ref": "http://gitlab.locuslabs.com/data-access-layer/map-note-api/raw/develop/map-notes.json#/info/title"}
+                    },
+                    "requestTemplates": {
+                        "application/json": "{\"accountId\": \"$input.params('accountId')\", \"venueId\": \"$input.params('venueId')\", \"mapnoteId\": \"$input.params('mapnoteId')\", \"stage\" : \"$context.stage\" }"
+                    },
+                    "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:103296743396:function:mnGetFullMapNote:LAMBDA_VERSION/invocations",
+                    "httpMethod": "POST",
+                    "type": "aws"
+                }
+            },
+            "patch": {
+                "operationId": "updateMapNote",
+                "x-amazon-apigateway-request-validator": "all",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "venueId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "mapnoteId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "Object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "../mapNoteSchemas/schemas.json#/definitions/Object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "$ref": "../components/responses.json#/definitions/basicResponses"
+                },
+                "security": [
+                    {
+                        "MapNoteAuthorizer": []
+                    }
+                ],
+                "x-amazon-apigateway-integration": {
+                    "credentials": "arn:aws:iam::103296743396:role/MapNotes",
+                    "responses": {
+                        "$ref": "../components/intResponses.json#/definitions/basicIntegrationResponses"
+                    },
+                    "requestTemplates": {
+                        "application/json": "{ \"accountId\": \"$input.params('accountId')\", \"venueId\": \"$input.params('venueId')\", \"mapnoteId\": \"$input.params('mapnoteId')\", \"body\" : $input.json('$'), \"stage\" : \"$context.stage\" }"
+                    },
+                    "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:103296743396:function:mnUpdateMapNote:LAMBDA_VERSION/invocations",
+                    "httpMethod": "POST",
+                    "type": "aws"
+                }
+            }
+        }
+    }
+}

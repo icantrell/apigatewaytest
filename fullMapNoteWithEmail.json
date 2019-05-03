@@ -1,0 +1,129 @@
+{
+    "definitions": {
+        "fullMapNoteWithEmail": {
+            "options": {
+                "$ref": "../components/option.json#/definitions/basicOptions"
+            },
+            "delete": {
+                "operationId": "deleteMapNote",
+                "x-amazon-apigateway-request-validator": "params-only",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "venueId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "mapnoteId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "name": "email",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "$ref": "../components/responses.json#/definitions/basicResponses"
+                },
+                "security": [
+                    {
+                        "MapNoteAuthorizer": []
+                    }
+                ],
+                "x-amazon-apigateway-integration": {
+                    "credentials": "arn:aws:iam::103296743396:role/MapNotes",
+                    "responses": {
+                        "$ref": "../components/intResponses.json#/definitions/basicIntegrationResponses"
+                    },
+                    "requestTemplates": {
+                        "application/json": "{ \"accountId\": \"$input.params('accountId')\", \"venueId\": \"$input.params('venueId')\", \"email\": \"$input.params('email')\", \"mapnoteId\": \"$input.params('mapnoteId')\", \"stage\" : \"$context.stage\" }"
+                    },
+                    "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:103296743396:function:mnDeleteMapNote:LAMBDA_VERSION/invocations",
+                    "httpMethod": "POST",
+                    "type": "aws"
+                }
+            },
+            "post": {
+                "operationId": "addMapNoteComment",
+                "x-amazon-apigateway-request-validator": "all",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "venueId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "mapnoteId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "Object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "../mapNoteSchemas/schemas.json#/definitions/Object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "$ref": "../components/responses.json#/definitions/basicResponses"
+                },
+                "security": [
+                    {
+                        "MapNoteAuthorizer": []
+                    }
+                ],
+                "x-amazon-apigateway-integration": {
+                    "credentials": "arn:aws:iam::103296743396:role/MapNotes",
+                    "responses": {
+                        "$ref": "../components/intResponses.json#/definitions/basicIntegrationResponses"
+                    },
+                    "requestTemplates": {
+                        "application/json": "{ \"accountId\": \"$input.params('accountId')\", \"venueId\": \"$input.params('venueId')\", \"email\": \"$input.params('email')\", \"mapnoteId\": \"$input.params('mapnoteId')\", \"body\" : $input.json('$'), \"stage\" : \"$context.stage\" }"
+                    },
+                    "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:103296743396:function:mnAddMapNoteComment:LAMBDA_VERSION/invocations",
+                    "httpMethod": "POST",
+                    "type": "aws"
+                }
+            }
+        }
+    }
+}

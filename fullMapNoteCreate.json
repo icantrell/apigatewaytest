@@ -1,0 +1,67 @@
+{
+    "definitions": {
+        "fullMapNoteCreate": {
+            "options": {
+                "$ref": "../components/option.json#/definitions/basicOptions"
+            },
+            "post": {
+                "operationId": "createMapNote",
+                "x-amazon-apigateway-request-validator": "all",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "venueId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "Object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "../mapNoteSchemas/schemas.json#/definitions/Object"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "email",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "$ref": "../components/responses.json#/definitions/basicResponses"
+                },
+                "security": [
+                    {
+                        "MapNoteAuthorizer": []
+                    }
+                ],
+                "x-amazon-apigateway-integration": {
+                    "credentials": "arn:aws:iam::103296743396:role/MapNotes",
+                    "responses": {
+                        "$ref": "../components/intResponses.json#/definitions/basicIntegrationResponses"
+                    },
+                    "requestTemplates": {
+                        "application/json": "{ \"accountId\": \"$input.params('accountId')\", \"venueId\": \"$input.params('venueId')\", \"email\": \"$input.params('email')\", \"body\" : $input.json('$'), \"stage\" : \"$context.stage\" }"
+                    },
+                    "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:103296743396:function:mnCreateMapNote:LAMBDA_VERSION/invocations",
+                    "httpMethod": "POST",
+                    "type": "aws"
+                }
+            }
+        }
+    }
+}
