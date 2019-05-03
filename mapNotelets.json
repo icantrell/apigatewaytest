@@ -2,7 +2,125 @@
     "definitions": {
         "mapNotelets": {
             "options": {
-                "$ref": "../components/option.json#/definitions/basicOptions"
+                "consumes": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400 response",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "403 response",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "404 response",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "409 response",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "500 response",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "503 response",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Methods": "'POST,GET,PATCH,DELETE,OPTIONS'",
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        }
+                    },
+                    "requestTemplates": {
+                        "application/json": "{ \"statusCode\" : 200 }"
+                    },
+                    "type": "mock"
+                }
             },
             "get": {
                 "operationId": "getMapNotelets",
@@ -70,7 +188,104 @@
                     }
                 ],
                 "responses": {
-                    "$ref": "../components/responses.json#/definitions/basicResponses"
+                    "200": {
+                        "description": "200 response",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400 response",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "403 response",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "404 response",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "409 response",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "500 response",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "503 response",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    }
                 },
                 "security": [
                     {
@@ -80,7 +295,80 @@
                 "x-amazon-apigateway-integration": {
                     "credentials": "arn:aws:iam::103296743396:role/MapNotes",
                     "responses": {
-                        "$ref": "../components/intResponses.json#/definitions/basicIntegrationResponses"
+                        ".*\"status\":403.*": {
+                            "statusCode": "403",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Methods": "'POST,GET,PATCH,DELETE,OPTIONS'",
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            },
+                            "responseTemplates": {
+                                "application/json": "#set($inputRoot = $input.path('$.errorMessage')) $inputRoot"
+                            }
+                        },
+                        ".*\"status\":500.*": {
+                            "statusCode": "500",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Methods": "'POST,GET,PATCH,DELETE,OPTIONS'",
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            },
+                            "responseTemplates": {
+                                "application/json": "#set($inputRoot = $input.path('$.errorMessage')) $inputRoot"
+                            }
+                        },
+                        ".*\"status\":400.*": {
+                            "statusCode": "400",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Methods": "'POST,GET,PATCH,DELETE,OPTIONS'",
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            },
+                            "responseTemplates": {
+                                "application/json": "#set($inputRoot = $input.path('$.errorMessage')) $inputRoot"
+                            }
+                        },
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Methods": "'POST,GET,PATCH,DELETE,OPTIONS'",
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        },
+                        ".*\"status\":503.*": {
+                            "statusCode": "503",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Methods": "'POST,GET,PATCH,DELETE,OPTIONS'",
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            },
+                            "responseTemplates": {
+                                "application/json": "#set($inputRoot = $input.path('$.errorMessage')) $inputRoot"
+                            }
+                        },
+                        ".*\"status\":404.*": {
+                            "statusCode": "404",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Methods": "'POST,GET,PATCH,DELETE,OPTIONS'",
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            },
+                            "responseTemplates": {
+                                "application/json": "#set($inputRoot = $input.path('$.errorMessage')) $inputRoot"
+                            }
+                        },
+                        ".*\"status\":409.*": {
+                            "statusCode": "409",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Methods": "'POST,GET,PATCH,DELETE,OPTIONS'",
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            },
+                            "responseTemplates": {
+                                "application/json": "#set($inputRoot = $input.path('$.errorMessage')) $inputRoot"
+                            }
+                        }
                     },
                     "requestTemplates": {
                         "application/json": "{ \"venueId\": \"$input.params('venueId')\", \"accountId\": \"$input.params('accountId')\", \"noteStatus\": \"$input.params('noteStatus')\", \"buildingId\": \"$input.params('buildingId')\", \"floorId\": \"$input.params('floorId')\", \"ordinalId\": \"$input.params('ordinalId')\", \"latitude\": \"$input.params('latitude')\", \"longitude\": \"$input.params('longitude')\", \"format\": \"$input.params('format')\", \"stage\" : \"$context.stage\" }"
