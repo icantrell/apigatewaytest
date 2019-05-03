@@ -34,6 +34,20 @@
                             }
                         }
                     },
+                    "401": {
+                        "description": "401 response",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    },
                     "403": {
                         "description": "403 response",
                         "headers": {
